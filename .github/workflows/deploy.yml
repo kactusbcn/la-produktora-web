@@ -17,7 +17,7 @@ jobs:
           mkdir -p _site
           shopt -s dotglob
           for f in *; do
-            case "$f" in _site|.github) continue ;; esac
+            case "$f" in _site|.github|.git) continue ;; esac
             cp -r "$f" _site/
           done
           echo "Ficheros a publicar:"
