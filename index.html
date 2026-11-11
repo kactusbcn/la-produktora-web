@@ -338,7 +338,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .reviews-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; margin-top: 44px; }
 .review { grid-column: span 2; }
 .review:nth-child(n+4) { grid-column: span 3; }
-.review { background: var(--white); border: 1px solid var(--line); padding: 28px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.review { background: rgba(255,255,255,.92); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); border: 1px solid var(--line); padding: 28px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .review-head { display: flex; align-items: center; gap: 14px; }
 .review-avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--chroma); color: var(--ink); display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 18px; flex-shrink: 0; }
 .review-name { font-weight: 700; color: var(--ink); }
