@@ -588,6 +588,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 @media (max-width: 760px) { .prices .wrap > :is(.eyebrow, h2), .how .wrap > :is(.eyebrow, h2), .clients .wrap > h2, .reviews .wrap > :is(.eyebrow, h2), .services .wrap > :is(.eyebrow, h2) { margin-left: 0; } }
 /* Tarifas: título más pequeño */
 .prices .wrap > h2 { font-size: clamp(24px, 3.2vw, 34px); }
+/* Ajuste de anclas: la sección empieza justo debajo de la cabecera fija */
+section[id], #servicios-cards { scroll-margin-top: 140px; }
+#contacto { padding-top: 0; }
+@media (min-width: 961px) { .nav { margin-right: -113px; } }
 </style>
 
 <header class="site-head">
@@ -600,7 +604,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     </a>
     <nav class="nav" aria-label="Principal">
       <a href="#quienes">Estudio</a>
-      <a href="#servicios">Servicios</a>
+      <a href="#servicios-cards">Servicios</a>
       <a href="#tarifas">Tarifas</a>
       <a href="#sala">Sala</a>
       <a href="#contacto">Contacto</a>
@@ -656,7 +660,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="wrap">
       <p class="eyebrow">Servicios</p>
       <h2>Alquila el estudio, graba tu contenido y trabaja tu presencia frente a cámara.</h2>
-      <div class="svc-grid">
+      <div class="svc-grid" id="servicios-cards">
         <article class="svc"><h3>Sesión de fotografía</h3><ul class="svc-list"><li>Sala de fotografía</li><li>Fondos blanco, negro o croma</li><li>Iluminación de estudio LED y monitores de luz</li><li>Una cámara Nikon D3300 y trípode</li><li>Sala climatizada con aire acondicionado y calefacción</li><li>Sesiones a partir de una hora</li><li>Fotógrafo incluido</li></ul></article>
         <article class="svc"><h3>Sesión de grabación</h3><ul class="svc-list"><li>Sala de grabación</li><li>Fondos blanco, negro o croma</li><li>Iluminación de estudio LED y monitores de luz</li><li>Una cámara de grabación Sony Alpha ZV-E10 y trípode</li><li>Micrófono inalámbrico DJI</li><li>Persona que graba en cámara incluida</li><li>Sala climatizada con aire acondicionado y calefacción</li><li>Sesiones a partir de una hora</li></ul></article>
         <article class="svc"><h3>Sesión de Podcast</h3><ul class="svc-list"><li>Sala de grabación de podcast</li><li>Plató de grabación con iluminación LED en techo y suelo</li><li>Monitores de luz y atrezo</li><li>Mesas, sillas y plantas</li><li>Agua de cortesía</li><li>Una grabación con 4 cámaras Sony Alpha ZV-E10 y 3 trípodes</li><li>Micrófonos Shure de alta condensación</li><li>Mesa de sonido y mesa de audio Blackmagic</li><li>Sala climatizada con aire acondicionado y calefacción</li><li>Sesiones a partir de 1 hora</li></ul></article>
