@@ -12,15 +12,23 @@ jobs:
       - name: Descargar código
         uses: actions/checkout@v4
 
-      - name: Subir a IONOS por FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Preparar carpeta de publicación
+        run: |
+          mkdir -p _site
+          shopt -s dotglob
+          for f in *; do
+            case "$f" in _site|.github) continue ;; esac
+            cp -r "$f" _site/
+          done
+
+      - name: Subir a IONOS por SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
+          port: 22
+          local_path: './_site/*'
+          remote_path: ${{ secrets.FTP_SERVER_DIR }}
+          sftp_only: true
+          delete: false
