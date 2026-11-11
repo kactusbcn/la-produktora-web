@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://laproduktora.com/sitemap.xml
+# Prueba de despliegue automático
