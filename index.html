@@ -378,6 +378,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .contact-check input { width: 18px; height: 18px; accent-color: var(--chroma); margin: 0; }
 .contact-form .btn { justify-self: start; margin-top: 8px; }
 .contact-map { min-height: 460px; display: flex; }
+.contact-mapframe { flex: 1; position: relative; min-height: 460px; background: var(--paper); }
+.contact-mapframe iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.contact-maplink { position: absolute; left: 12px; bottom: 12px; background: var(--ink); color: var(--white); padding: 8px 12px; font-size: 14px; font-weight: 700; text-decoration: none; }
+.contact-maplink:focus-visible { outline: 3px solid var(--chroma); outline-offset: 2px; }
 .contact-mapcard { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 32px; background: var(--ink); color: var(--white); text-decoration: none; background-image: linear-gradient(160deg, rgba(0,230,92,.25), rgba(10,10,10,0) 60%); }
 .contact-mapname { font-family: var(--display); font-weight: 800; font-size: 26px; letter-spacing: .02em; }
 .contact-mapcta { margin-top: 18px; color: var(--chroma); font-weight: 700; }
@@ -925,17 +929,7 @@ section[id], #servicios-cards { scroll-margin-top: 140px; }
           </form>
         </div>
         <aside class="contact-side">
-          <a class="contact-mapcard" href="https://www.google.com/maps/search/?api=1&amp;query=LA+PRODUKTORA+STUDIO+Carrer+de+Font+Vella+7+08221+Terrassa" target="_blank" rel="noopener" aria-label="Ver LA PRODUKTORA STUDIO en Google Maps">
-            <img class="map-bg" src="map-fontvella.jpg" alt="Mapa de la calle Font Vella, Terrassa, con la ubicación de LA PRODUKTORA STUDIO">
-            <svg class="map-pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C6.5 0 2 4.4 2 9.8 2 17 12 24 12 24s10-7 10-14.2C22 4.4 17.5 0 12 0z" fill="#EA4335" stroke="#FFFFFF" stroke-width="1.5"/><circle cx="12" cy="9.8" r="3.6" fill="#FFFFFF"/></svg>
-            <svg class="contact-logo" viewBox="120 195 960 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LA PRODUKTORA STUDIO">
-        <text x="600" y="290" text-anchor="middle" font-family="Montserrat, Arial, Helvetica, sans-serif" font-weight="800" font-size="96" fill="#FFFFFF"><tspan letter-spacing="-8">LA</tspan><tspan letter-spacing="-1"> PRODUKTORA</tspan></text>
-        <text x="600" y="352" text-anchor="middle" font-family="Montserrat, Arial, Helvetica, sans-serif" font-weight="400" font-size="26" letter-spacing="16" textLength="194" lengthAdjust="spacing" fill="#FFFFFF">STUDIO</text><line x1="370" y1="342.5" x2="470" y2="342.5" stroke="#00E65C" stroke-width="6"/><line x1="730" y1="342.5" x2="830" y2="342.5" stroke="#00E65C" stroke-width="6"/>
-      </svg>
-            <span>Carrer de Font Vella, 7, 2-1</span>
-            <span>08221 Terrassa, Barcelona</span>
-            <span class="contact-mapcta">Ver en Google Maps →</span>
-          </a>
+          <div class="contact-mapframe"><iframe title="Mapa de LA PRODUKTORA STUDIO, Carrer de Font Vella 7, Terrassa" src="https://www.google.com/maps?q=LA+PRODUKTORA+STUDIO+Carrer+de+Font+Vella+7+08221+Terrassa&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe><a class="contact-maplink" href="https://www.google.com/maps/search/?api=1&amp;query=LA+PRODUKTORA+STUDIO+Carrer+de+Font+Vella+7+08221+Terrassa" target="_blank" rel="noopener">Ver en Google Maps →</a></div>
         </aside>
       </div>
     </div>
