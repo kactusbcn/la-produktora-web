@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ZewsONI2lgC4FewK4eNdMaJmbdqhYmyX+7bDJ+CLaps=' 'sha256-4tJ1/5s80UkaKMcnf/KMo3KHCTTSZ7yM19wvHARUadA=' 'sha256-ts16WAaigEe2whFE3pR5BeCqFIIwlMlvPTZnt8gaWyw=' 'sha256-b566loXh24h2Xd4+QrjpBSYaoivfuYmC7XDxWMKVfWg=' https://tracker.metricool.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.metricool.com; connect-src 'self' https://*.metricool.com https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ZewsONI2lgC4FewK4eNdMaJmbdqhYmyX+7bDJ+CLaps=' 'sha256-4tJ1/5s80UkaKMcnf/KMo3KHCTTSZ7yM19wvHARUadA=' 'sha256-ts16WAaigEe2whFE3pR5BeCqFIIwlMlvPTZnt8gaWyw=' 'sha256-b566loXh24h2Xd4+QrjpBSYaoivfuYmC7XDxWMKVfWg=' 'sha256-4bQpo99SdrRnUqFbOwV4/hg0BE6dKYUXTEi7D5oyy7U=' https://tracker.metricool.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.metricool.com; connect-src 'self' https://*.metricool.com https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>LA PRODUKTORA | Alquiler de estudio Podcast en Terrassa</title>
@@ -193,6 +193,27 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .nav a.nav-phone:hover { color: var(--chroma); }
 .nav a.nav-phone:focus-visible { outline: 3px solid var(--chroma); outline-offset: 3px; }
 .site-head .btn { min-height: 40px; padding: 8px 18px; font-size: 13px; }
+.m-bar, .menu-toggle { display: none; }
+@media (max-width: 860px) {
+  .site-head { padding-block: 0; }
+  .site-head .wrap { flex-direction: column; align-items: center; justify-content: flex-start; gap: 14px; min-height: 0; padding-block: 18px 16px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .logo-neg { height: 56px; margin-left: 0; }
+  .m-bar { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 12px; }
+  .m-bar .btn { min-height: 44px; padding: 10px 16px; }
+  .menu-toggle { display: inline-flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 44px; height: 44px; padding: 0; background: none; border: 0; cursor: pointer; flex-shrink: 0; }
+  .menu-toggle span { display: block; width: 26px; height: 3px; background: var(--white); transition: transform .2s ease, opacity .2s ease; }
+  .site-head.is-open .menu-toggle span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .site-head.is-open .menu-toggle span:nth-child(2) { opacity: 0; }
+  .site-head.is-open .menu-toggle span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  .menu-toggle:focus-visible { outline: 3px solid var(--chroma); outline-offset: 3px; }
+  .nav { display: none; flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 0; width: 100%; }
+  .site-head.is-open .nav { display: flex; }
+  .nav > a { display: block; text-align: center; padding: 16px 0; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,.18); }
+  .nav .nav-cta-wrap { display: contents; }
+  .nav a.nav-phone { position: static; transform: none; order: 1; display: flex; justify-content: center; font-size: 20px; padding: 22px 0 10px; }
+  .nav .nav-social { order: 2; justify-content: center; padding: 12px 0; }
+  .nav .nav-cta-wrap > .btn { order: 3; align-self: center; margin: 18px 0 4px; min-height: 44px; padding: 10px 22px; }
+}
 
 /* Hero */
 .hero {
@@ -542,7 +563,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* Responsive */
 @media (max-width: 860px) {
   .about-grid, .zone-grid, .steps { grid-template-columns: 1fr; }
-  .nav a:not(.btn) { display: none; }
   section { padding-block: 56px; }
 }
 @media (max-width: 520px) {
@@ -640,7 +660,11 @@ section[id], #servicios-cards { scroll-margin-top: 140px; }
         <text x="600" y="352" text-anchor="middle" font-family="Montserrat, Arial, Helvetica, sans-serif" font-weight="400" font-size="26" letter-spacing="16" textLength="194" lengthAdjust="spacing" fill="#FFFFFF">STUDIO</text><line x1="370" y1="342.5" x2="470" y2="342.5" stroke="#00E65C" stroke-width="6"/><line x1="730" y1="342.5" x2="830" y2="342.5" stroke="#00E65C" stroke-width="6"/>
       </svg>
     </a>
-    <nav class="nav" aria-label="Principal">
+    <div class="m-bar">
+      <a class="btn btn-solid" href="https://wa.me/34640184329?text=Hola%2C%20quiero%20informaci%C3%B3n%20para%20alquilar%20el%20estudio" target="_blank" rel="noopener">¡Alquila el estudio!</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav" id="menu-principal" aria-label="Principal">
       <a href="#quienes">Hola</a>
       <a href="#gl">Estudio</a>
       <a href="#servicios-cards">Servicios</a>
@@ -651,6 +675,20 @@ section[id], #servicios-cards { scroll-margin-top: 140px; }
     </nav>
   </div>
 </header>
+<script>
+(function () {
+  var head = document.querySelector('.site-head');
+  var btn = head && head.querySelector('.menu-toggle');
+  if (!btn) return;
+  function setOpen(open) {
+    head.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  }
+  btn.addEventListener('click', function () { setOpen(!head.classList.contains('is-open')); });
+  head.querySelectorAll('.nav a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+})();
+</script>
 
 <main>
   <section class="hero" id="inicio">
