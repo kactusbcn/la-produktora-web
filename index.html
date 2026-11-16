@@ -185,6 +185,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   opacity: 1;
 }
 .nav a:hover { opacity: 1; color: var(--chroma); }
+.nav .nav-social { display: inline-flex; gap: 12px; align-items: center; }
+.nav .nav-social a { display: inline-flex; color: var(--white); opacity: 1; }
+.nav .nav-social a:hover { color: var(--chroma); }
 .site-head .btn { min-height: 40px; padding: 8px 18px; font-size: 13px; }
 
 /* Hero */
@@ -637,6 +640,7 @@ section[id], #servicios-cards { scroll-margin-top: 140px; }
       <a href="#tarifas-tabla">Tarifas</a>
       <a href="#contacto">Contacto</a>
       <a class="btn btn-solid" href="https://wa.me/34640184329?text=Hola%2C%20quiero%20informaci%C3%B3n%20para%20alquilar%20el%20estudio" target="_blank" rel="noopener">¡Alquila el estudio!</a>
+      <span class="nav-social"><a href="https://www.instagram.com/laproduktora" target="_blank" rel="noopener" aria-label="Instagram de LA PRODUKTORA STUDIO"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="#FFFFFF" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#FFFFFF" stroke="none"/></svg></a><a href="https://www.tiktok.com/@laproduktora" target="_blank" rel="noopener" aria-label="TikTok de LA PRODUKTORA STUDIO"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="#FFFFFF"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg></a><a href="https://www.facebook.com/laproduktorastudio" target="_blank" rel="noopener" aria-label="Facebook de LA PRODUKTORA STUDIO"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="#FFFFFF"><path d="M14 8V6.2c0-.9.5-1.2 1.2-1.2H17V2h-2.8C11.6 2 10.8 3.6 10.8 5.4V8H8v3.2h2.8V22H14V11.2h2.7L17.1 8H14z"/></svg></a></span>
     </nav>
   </div>
 </header>
