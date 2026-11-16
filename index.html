@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ZewsONI2lgC4FewK4eNdMaJmbdqhYmyX+7bDJ+CLaps=' 'sha256-4tJ1/5s80UkaKMcnf/KMo3KHCTTSZ7yM19wvHARUadA=' 'sha256-SObHm5tQaiWv+HoVgJ3JMOcb2/LDYIYnz7SQ9soaFPA=' 'sha256-b566loXh24h2Xd4+QrjpBSYaoivfuYmC7XDxWMKVfWg=' https://tracker.metricool.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.metricool.com; connect-src 'self' https://*.metricool.com; form-action 'self' https://formsubmit.co; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ZewsONI2lgC4FewK4eNdMaJmbdqhYmyX+7bDJ+CLaps=' 'sha256-4tJ1/5s80UkaKMcnf/KMo3KHCTTSZ7yM19wvHARUadA=' 'sha256-ts16WAaigEe2whFE3pR5BeCqFIIwlMlvPTZnt8gaWyw=' 'sha256-b566loXh24h2Xd4+QrjpBSYaoivfuYmC7XDxWMKVfWg=' https://tracker.metricool.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.metricool.com; connect-src 'self' https://*.metricool.com https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>LA PRODUKTORA | Alquiler de estudio Podcast en Terrassa</title>
@@ -384,6 +384,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .contact-form .contact-check { display: flex; flex-direction: row; align-items: center; gap: 10px; font-size: 16px; font-weight: 400; color: var(--ink); }
 .contact-check input { width: 18px; height: 18px; accent-color: var(--chroma); margin: 0; }
 .contact-form .btn { justify-self: start; margin-top: 8px; }
+.form-status { margin: 0; font-size: 16px; font-weight: 600; color: var(--ink); }
+.form-status.is-ok { color: #0a7a36; }
+.form-status.is-error { color: #b00020; }
 .contact-map { min-height: 460px; display: flex; }
 .contact-mapcard { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 32px; background: var(--ink); color: var(--white); text-decoration: none; background-image: linear-gradient(160deg, rgba(0,230,92,.25), rgba(10,10,10,0) 60%); }
 .contact-mapname { font-family: var(--display); font-weight: 800; font-size: 26px; letter-spacing: .02em; }
@@ -922,11 +925,11 @@ section[id], #servicios-cards { scroll-margin-top: 140px; }
           <p class="eyebrow">Contacto</p>
           <h2 id="contacto-h">¿Quieres reservar la sala o tienes alguna duda?</h2>
           <p class="contact-lead">Te respondemos lo antes posible, antes de 24 horas.</p>
-          <form class="contact-form" action="https://formsubmit.co/reservas@laproduktora.com" method="POST" autocomplete="off">
+          <form class="contact-form" action="https://formsubmit.co/ajax/reservas@laproduktora.com" method="POST" autocomplete="off">
             <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
             <input type="hidden" name="_subject" value="Nueva consulta desde la web de La Produktora">
             <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="true">
+            <input type="hidden" name="_captcha" value="false">
             <label>Nombre *<input type="text" name="nombre" required autocomplete="name"></label>
             <label>Correo electrónico *<input type="email" name="correo" required autocomplete="email"></label>
             <label class="contact-phone">Teléfono móvil *
@@ -943,6 +946,7 @@ section[id], #servicios-cards { scroll-margin-top: 140px; }
               </div>
             </fieldset>
             <button class="btn btn-solid contact-full" type="submit">Enviar consulta</button>
+            <p class="form-status contact-full" id="form-status" role="status" aria-live="polite" hidden></p>
           </form>
         </div>
         <aside class="contact-side">
@@ -1076,6 +1080,8 @@ section[id], #servicios-cards { scroll-margin-top: 140px; }
   var phone = document.getElementById('tel-num');
   var msg = document.getElementById('msg');
   var count = document.getElementById('msg-count');
+  var status = document.getElementById('form-status');
+  var sendBtn = form.querySelector('button[type="submit"]');
   function syncChecks() {
     var any = false;
     for (var i = 0; i < checks.length; i++) if (checks[i].checked) any = true;
@@ -1086,13 +1092,33 @@ section[id], #servicios-cards { scroll-margin-top: 140px; }
   function syncCount() { count.textContent = msg.value.length + ' / 260'; }
   msg.addEventListener('input', syncCount);
   syncCount();
-  form.addEventListener('submit', function () {
-    var h = document.createElement('input');
-    h.type = 'hidden';
-    h.name = 'telefono';
-    h.value = '+34 ' + phone.value.replace(/\s/g, '');
-    phone.removeAttribute('name');
-    form.appendChild(h);
+  function showStatus(text, cls) {
+    status.hidden = false;
+    status.className = 'form-status contact-full ' + cls;
+    status.textContent = text;
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    data.delete('telefono_numero');
+    data.set('telefono', '+34 ' + phone.value.replace(/\s/g, ''));
+    sendBtn.disabled = true;
+    showStatus('Enviando tu consulta…', '');
+    fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+      .then(function (r) {
+        return r.json().then(function (d) { return { ok: r.ok, d: d }; }, function () { return { ok: r.ok, d: {} }; });
+      })
+      .then(function (res) {
+        if (!res.ok || res.d.success === false) throw new Error('send');
+        form.reset();
+        syncCount();
+        syncChecks();
+        showStatus('¡Gracias! Hemos recibido tu consulta y te responderemos pronto.', 'is-ok');
+      })
+      .catch(function () {
+        showStatus('No hemos podido enviar la consulta. Inténtalo de nuevo o escríbenos a reservas@laproduktora.com.', 'is-error');
+      })
+      .then(function () { sendBtn.disabled = false; });
   });
 })();
 </script>
